@@ -8,12 +8,12 @@ const user = ref(userStore.state);
 <template>
     <template v-if="user.name">
         <RouterLink to="/">Accueil</RouterLink>
+        <RouterLink to="/todolist">Todolist</RouterLink>
         <RouterLink to="/logout">Déconnexion</RouterLink>
     </template>
+    <RouterLink to="/about">A propos</RouterLink>
     <RouterLink to="/random">Au hasard</RouterLink>
-    
     <template v-if="!user.name">
-        <RouterLink to="/about">A propos</RouterLink>
         <RouterLink to="/login">Connexion</RouterLink>
         <RouterLink to="/register">Inscription</RouterLink>
     </template>

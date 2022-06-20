@@ -12,9 +12,9 @@ export const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path: '/', name: 'Home', component: Home},
-        {path: '/todolist', name: 'todolist', component: Todolist},
-        {path: '/about', name: 'about', component: About},
-        {path: '/random', name: 'random', component: Random},
+        {path: '/todolist', name: 'Todolist', component: Todolist},
+        {path: '/about', name: 'About', component: About},
+        {path: '/random', name: 'Random', component: Random},
         {path: '/login', name: 'Login', component: Login},
         {path: '/register', name: 'Register', component: Register},
         {path: '/logout', name: 'logout', beforeEnter: () => {
@@ -30,7 +30,7 @@ router.beforeEach(async (to, from) => {
       // make sure the user is authenticated
       !token &&
       // ❗️ Avoid an infinite redirect
-      to.name !== 'Login' && to.name !== 'Register'
+      to.name !== 'Login' && to.name !== 'Register' && to.name !== 'Random' && to.name !== 'About'
     ) {
       // redirect the user to the login page
       return { name: 'Login' }

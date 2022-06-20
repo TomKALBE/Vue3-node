@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("./config/database");
 const tasks = require("./routes/tasks");
 const users = require("./routes/users");
+var cors = require("cors");
+
 var jwt = require("jsonwebtoken");
 
 const app = express();
@@ -12,6 +14,11 @@ mongoose.connection.on(
     console.error.bind(console, "MongoDB connection error:")
 );
 app.use(express.json());
+app.use(
+    cors({
+        exposedHeaders: "x-access-token",
+    })
+);
 app.get("/", function (req, res) {
     res.json("Evaluation nodejs");
 });
