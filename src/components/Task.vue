@@ -17,13 +17,36 @@ const cancel = () => {
     done.value = props.done;
     displayForm.value = false;
 }
+const deleteTask = async () => {
+    console.log(description.value, done.value)
+    axios.delete("http://127.0.0.1:3001/tasks/" + props.id, {
+        headers: {
+            "x-access-token": localStorage.getItem("token"),
+        },
+    })
+    .then((res) => {
+        console.log(res)
+        if(res.status === 200){
+            props.getTodoList()
+            error.value = ""
+        }
+        else{
+            console.log("erreur")
+        }
+    })
+    .catch((err) => {
+        console.log(err)
+        error.value = "Une erreur s'est produite";
+    });
+}
+
 const editTask = async () => {
     console.log(description.value, done.value)
     axios.put("http://127.0.0.1:3001/tasks/" + props.id, {
-            description: description.value,
-            done: done.value,
-            headers: {
-                "x-access-token": localStorage.getItem("token"),
+        description: description.value,
+        done: done.value,
+        headers: {
+            "x-access-token": localStorage.getItem("token"),
         },
     })
     .then((res) => {
@@ -48,7 +71,9 @@ const editTask = async () => {
 
     <div>
         <a :onclick="displays">{{props.description}} - {{props.done}}</a>
+        <button :onclick="deleteTask">Supprimer</button>
     </div>
+
     <div id="form" v-if="displayForm">
         <form @submit.prevent="editTask">
             <input v-model="description">
