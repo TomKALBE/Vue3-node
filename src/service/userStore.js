@@ -29,6 +29,7 @@ export const userStore = createStore({
 
         logout(state) {
             localStorage.removeItem("token");
+            localStorage.removeItem("task");
             state.name = null;
             state.email = null;
             state.connected = false;
