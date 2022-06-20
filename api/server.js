@@ -22,7 +22,27 @@ app.use(
 app.get("/", function (req, res) {
     res.json("Evaluation nodejs");
 });
-app.use("/tasks", tasks);
+function validateUser(req, res, next) {
+    jwt.verify(
+        req.headers["x-access-token"],
+        req.app.get("secretKey"),
+        function (err, decoded) {
+            if (err) {
+                res.status(401);
+                res.json({
+                    status: "error pas les droits",
+                    message: err.message,
+                    data: null,
+                });
+            } else {
+                // add user id to request
+                req.body.userId = decoded.id;
+                next();
+            }
+        }
+    );
+}
+app.use("/tasks", validateUser, tasks);
 app.use("/users", users);
 
 

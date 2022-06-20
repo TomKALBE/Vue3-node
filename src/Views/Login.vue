@@ -26,10 +26,8 @@ const email = ref('')
             if(res.status === 401){
                 console.log("res data",res.data)
             }
-
             userStore.commit("login", res.data.data );
             router.push({path: '/'})
-
         })
         .catch(err => {
             console.log("error loging", err)

@@ -22,7 +22,6 @@ const addTask = async () => {
             
     })
     .then((res) => {
-        console.log(res)
         if(res.status === 201){
             getTodoList()
             task_.value = "";
@@ -30,7 +29,7 @@ const addTask = async () => {
             localStorage.remove("task")
         }
         else{
-            console.log("erreur")
+            erreur.value = "Une erreur s'est produite"
         }
     })
     .catch((err) => {
