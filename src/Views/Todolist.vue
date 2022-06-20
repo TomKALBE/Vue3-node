@@ -1,7 +1,7 @@
 <script setup>
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
-
+import Task from '@/components/Task.vue'
 const task_ = ref(localStorage.getItem('task'));
 console.log(localStorage.getItem('task'))
 const todolist = ref([]);
@@ -68,8 +68,7 @@ onMounted(() => {
         <div v-if="todolist">
             <ul>
                 <li v-for="task in todolist">
-                    <span>{{task.description}}</span>
-                    <span>{{task.done}}</span>
+                    <Task :getTodoList="getTodoList" :id="task.id" :description="task.description" :done="task.done"/>
                 </li>
             </ul>
         </div>
