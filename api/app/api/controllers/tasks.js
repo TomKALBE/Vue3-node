@@ -54,7 +54,7 @@ module.exports = {
     updateById: function (req, res, next) {
         taskModel.findByIdAndUpdate(
             req.params.taskId,
-            { done: req.body.done },
+            { description: req.body.description, done: req.body.done },
             function (err) {
                 if (err) next(err);
                 else {
