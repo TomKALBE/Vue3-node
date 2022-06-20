@@ -42,7 +42,7 @@ function validateUser(req, res, next) {
         }
     );
 }
-app.use("/tasks", validateUser, tasks);
+app.use("/tasks", tasks);
 app.use("/users", users);
 
 
