@@ -17,6 +17,7 @@ const decode = (token) => {
 
 export const userStore = createStore({
     state() {
+        console.log(decode(localStorage.getItem('token')));
         const data = decode(localStorage.getItem('token'));
         return {
             name: data.name,
