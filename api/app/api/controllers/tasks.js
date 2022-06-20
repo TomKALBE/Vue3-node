@@ -8,7 +8,7 @@ module.exports = {
                 res.json({
                     status: "success",
                     message: "Task found!!!",
-                    data: { movies: taskInfo },
+                    data: { tasks: taskInfo },
                 });
             }
         });
@@ -55,7 +55,7 @@ module.exports = {
         taskModel.findByIdAndUpdate(
             req.params.taskId,
             { done: req.body.done },
-            function (err, movieInfo) {
+            function (err) {
                 if (err) next(err);
                 else {
                     res.json({
@@ -70,7 +70,7 @@ module.exports = {
     deleteById: function (req, res, next) {
         taskModel.findByIdAndRemove(
             req.params.taskId,
-            function (err, movieInfo) {
+            function (err) {
                 if (err) next(err);
                 else {
                     res.json({
